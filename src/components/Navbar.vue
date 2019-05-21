@@ -7,6 +7,19 @@
         <span>Ninja</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
+      <v-menu offset-y>
+        <v-btn flat slot="activator" color="grey">
+          <v-icon left>expand_more</v-icon>
+          <span>Menu</span>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
       <v-btn flat color="grey">
         <span>Sign out</span>
         <v-icon right>exit_to_app</v-icon>
@@ -19,9 +32,7 @@
           <v-avatar size="100">
             <img src="/avatar-1.png">
           </v-avatar>
-          <p class="white--text subheading mt-1 text-xs-center ">
-            Kendo
-          </p>
+          <p class="white--text subheading mt-1 text-xs-center">Kendo</p>
         </v-flex>
       </v-layout>
       <v-list>
@@ -35,7 +46,6 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-
   </nav>
 </template>
 
@@ -45,11 +55,11 @@ export default {
     return {
       drawer: false,
       links: [
-        { icon: 'dashboard', text: 'Dashboard', route: '/' },
-        { icon: 'folder', text: 'Meus Projetos', route: '/projetos' },
-        { icon: 'person', text: 'Time', route: '/time' }
+        { icon: "dashboard", text: "Dashboard", route: "/" },
+        { icon: "folder", text: "Meus Projetos", route: "/projetos" },
+        { icon: "person", text: "Time", route: "/time" }
       ]
-    }
+    };
   }
-}
+};
 </script>
