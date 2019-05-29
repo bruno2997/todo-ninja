@@ -21,7 +21,7 @@
       </v-menu>
 
       <v-btn flat color="grey">
-        <span>Sign out</span>
+        <span>Sair</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-toolbar>
@@ -33,6 +33,9 @@
             <img src="/avatar-1.png">
           </v-avatar>
           <p class="white--text subheading mt-1 text-xs-center">Kendo</p>
+        </v-flex>
+        <v-flex class="mt-3 mb-3">
+          <Popup />
         </v-flex>
       </v-layout>
       <v-list>
@@ -50,7 +53,12 @@
 </template>
 
 <script>
+import Popup from './Popup'
+
 export default {
+  components: {
+    Popup
+  },
   data() {
     return {
       drawer: false,

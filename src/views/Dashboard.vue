@@ -4,7 +4,7 @@
 
     <v-container class="my-5">
 
-      <v-layout row class="mb-3">
+      <v-layout row wrap class="mb-3">
         <v-tooltip top>
           <v-btn small flat color="grey" @click="ordenarPor('title')" slot="activator">
             <v-icon left small>folder</v-icon>
@@ -58,7 +58,8 @@ export default {
         { title: 'Código da Homepage', person: 'Chun Li', due: '10 Jan 2019', status: 'Completo', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
         { title: 'Design Thumbnails', person: 'Ryu', due: '20 Dez 2018', status: 'Completo', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
         { title: 'Criar um Fórum da Comunidade', person: 'Gouken', due: '20 Out 2018', status: 'Encerrado', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-      ]
+      ],
+      w: window.innerWidth,
     }
   },
   methods: {
