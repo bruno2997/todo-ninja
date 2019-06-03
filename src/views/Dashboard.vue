@@ -19,6 +19,9 @@
           </v-btn>
           <span>Ordenar pessoas por nome</span>
         </v-tooltip>
+        <!-- <v-flex>
+          <Popup />
+        </v-flex> -->
       </v-layout>
 
       <v-card flat v-for="project in projects" :key="project.title">
@@ -44,13 +47,17 @@
         <v-divider></v-divider>
       </v-card>
 
-
     </v-container>
   </div>
 </template>
 
 <script>
+// import Popup from '../components/Popup'
+
 export default {
+  // components: {
+  //   Popup
+  // },
   data() {
     return {
       projects: [
