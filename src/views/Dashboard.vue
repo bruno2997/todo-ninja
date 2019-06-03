@@ -20,7 +20,7 @@
           <span>Ordenar pessoas por nome</span>
         </v-tooltip>
         <!-- <v-flex>
-          <Popup />
+          <Popup @projectAdded="snackbar = true"/>
         </v-flex> -->
       </v-layout>
 
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import db from '@/fb'
 // import Popup from '../components/Popup'
 
 export default {
@@ -60,19 +61,29 @@ export default {
   // },
   data() {
     return {
-      projects: [
-        { title: 'Design de Website', person: 'Kendo', due: '01 Jan 2019', status: 'Progresso', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Código da Homepage', person: 'Chun Li', due: '10 Jan 2019', status: 'Completo', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Design Thumbnails', person: 'Ryu', due: '20 Dez 2018', status: 'Completo', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Criar um Fórum da Comunidade', person: 'Gouken', due: '20 Out 2018', status: 'Encerrado', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-      ],
+      projects: [],
       w: window.innerWidth,
+      // snackbar: false,
     }
   },
   methods: {
     ordenarPor(prop) {
       this.projects.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
+  },
+  created() {
+    db.collection('projects').onSnapshot(res => {
+      const changes = res.docChanges()
+
+      changes.forEach(change => {
+        if(change.type === 'added') {
+          this.projects.push({
+            ...change.doc.data(),
+            id: change.doc.id
+          })
+        }
+      })
+    })
   }
 }
 </script>
@@ -87,7 +98,7 @@ export default {
   border-left: 4px solid orange;
 }
 
-.project.Encerrado {
+.project.Atrasado {
   border-left: 4px solid tomato;
 }
 
@@ -97,7 +108,7 @@ export default {
 .v-chip.Progresso{
   background: #ffaa2c;
 }
-.v-chip.Encerrado{
+.v-chip.Atrasado{
   background: #f83e70;
 }
 
